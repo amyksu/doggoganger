@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css"/>
+
+<script>
+
+
+  var currentFile = null;
+  Dropzone.options.myDropzone = {
+    addRemoveLinks: true,
+    paramName: "file", // The name that will be used to transfer the file
+    maxFilesize: 2, // MB
+    acceptedFiles: "image/*",
+    dictDefaultMessage: "Drop an image here or click to upload an image (Max 2MB)",
+    addedfile: function(file) {
+      if (currentFile) {
+        this.removeFile(currentFile);
+      }
+      currentFile = file;
+    },
+    success: function(file, res) {
+      // Hide dropzone
+      document.querySelector("#my-dropzone").classList.add("dn");
+      // Show results.
+      document.querySelector("#results").classList.remove("dn");
+      // Update the website to show the uploaded photo and the sample photo.
+      
+      var uploaded_img = document.createElement("img");
+      // Change src to aws path to file.name.
+      uploaded_img.src = "https://doggoganger-assets.s3.amazonaws.com/static/breeds/" + file.name;
+      uploaded_img.style.width = "100%";
+      uploaded_img.style.width = "100%";
+      document.querySelector("#upload-image").appendChild(uploaded_img);
+
+      Array.from(document.querySelectorAll(".breed-name")).forEach(function(el) {
+        el.innerText = res.breed.name;
+      });
+      var img = document.createElement('img');
+      img.src = "/static/breeds/" + res.breed.file_name;
+      img.style.width = "100%";
+      img.style.width = "100%";
+      document.querySelector("#breed-image").appendChild(img);
+
+      // res.breed.uri
+      document.querySelector("#breed-link").href = "https://www.petfinder.com/dog-breeds/" + res.breed.uri;
+      console.log(res)
+    }, 
+    error: function(file, err) {
+      console.log(err);
+    },
+    complete: function(file, err) {
+      console.log(file)
+      // this.removeFile(file)
+      // Remove the file from dropzone.
+    }
+  };
+
+</script>
+
+<!-- Original  -->
+<div>
+  <div class="tc-l mt4 mt5-m mt6-l ph3">
+    <h1 class="f-subheadline-l fw6 navy tc lh-title">Doggogänger</h1>
+    <h2 class="fw3 f3 navy tc mt3 mb4">What dog breed do you look like?</h2>
+    <form action="/predict"
+      class=" tc dropzone"
+      id="my-dropzone"></form>
+  </div>
+</div>
+
+<!-- Results. -->
+<div class="fw2 f4 lh-copy navy mt0 mb3 tc dn" id="results">
+  <div>
+    You look like a <br> <span class="breed-name"></span>
+  </div>
+    <div class="dib">
+        <div class="fl w-50 w-50-m w-50-l pa3" id="upload-image">
+        </div>
+        <div class="fl w-50 w-50-m w-50-l pa3" id="breed-image">
+        </div>
+    </div>
+  <p class="fw1 f5 navy mt0 mb3">
+  Interested in adopting or trying again?
+  </p>
+
+
+  <a id="breed-link" class="f6 br-pill bg-navy no-underline white ba b--navy grow pv2 ph3 dib mr3"
+      href="https://www.petfinder.com/dog-breeds/">
+      Adopt a <span class="breed-name"></span> today! 
+    </a>
+    <a class="f6 br-pill navy no-underline ba grow pv2 ph3 dib" id="reset" href="#0">
+      Upload a new photo
+    </a>
+  </div>
+</div>  
+
+
+<footer class="pv4 ph3 ph5-m ph6-l mid-gray">
+  <small class="f6 db tc">© 2019 <b class="ttu">Amy K Su for Metis</b>., All Rights Reserved</small>
+  <div class="tc mt3">
+
+
+<script>
+  document.querySelector("#reset").addEventListener("click", function(e) {
+    document.querySelector("#my-dropzone").classList.remove("dn");
+    document.querySelector("#results").classList.add("dn");    
+    document.querySelector("#upload-image").innerHTML = "";
+    Array.from(document.querySelectorAll(".breed-name")).forEach(function(el) {
+      el.innerHTML = "";
+    });
+    document.querySelector("#breed-image").innerHTML = ""; 
+  });
+</script> 
+
+{% endblock %}
+
+
+
+
