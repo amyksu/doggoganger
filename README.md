@@ -1,8 +1,13 @@
 # Encouraging dog adoption through convolutional neural networks
 
-If you know me, you know that I am obsessed with dogs. Whenever I’m walking down a street, driving in my car, or just existing, I can spot dogs from a mile away. You could call it a sixth sense or an obsession, but either way, I. LOVE. DOGS. 
+If you know me, you know that I am obsessed with dogs. Whenever I’m walking down a street, driving in my car, or just existing, I can spot dogs from a mile away. You could call it a sixth sense or an obsession, but either way, I. LOVE. DOGS. So what better way to utilize my data science skills than to apply it to something I love so much.  
 
-For my final capstone project at Metis, I wanted to take my love of dogs and do something productive with that. Knowing that approximately 3.3 million dogs enter animal shelters nationwide, a little less than half of those dogs actually are adopted and find a home, and another 20% of these dogs are euthanized, I wanted to create an application that would encourage pet adoption by creating a fun way to discover dogs looking for a home. That’s where Doggogänger comes in. 
+Did you know? 
+  - Approximately 3.3 million dogs enter animal shelters nationwide.
+  - A little less than half of those dogs actually are adopted and find a home
+  - Another 20% of these dogs are euthanized
+  
+With that being said, I wanted to create an application that would encourage pet adoption by creating a fun way to discover dogs looking for a home. That’s where Doggogänger comes in. 
 
 Doggogänger is a Flask app that will predict what dog breed a human or dog most resembles and if you are interested, it will redirect you to PetFinder.com where you can find a dog that you or whoever you input most resembles. 
 
