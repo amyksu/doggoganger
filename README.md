@@ -39,8 +39,9 @@ The application will take in a photo, checks against the face and dog detectors 
 
 
 ## Preview
+Because the Heroku dyno does not support GPUs or offer GPU instances, I could not deploy my application for public use. I screenrecorded the app in action in the meantime while I continue to find a solution. (If anyone has any suggestions, please reach out :) )  
 
-
+[![](https://paper-attachments.dropbox.com/s_5F95FD4F1224A6D8BB3647F3191FEC90ADBB796FA4B4F3B95A08EF639619FCA5_1565020738818_image.png)](https://youtu.be/xpNOhZgXZmM)
 
 
 ## Summary
